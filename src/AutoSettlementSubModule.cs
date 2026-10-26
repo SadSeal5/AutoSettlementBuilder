@@ -1,5 +1,6 @@
 using System;
 using AutoSettlementBuilder.Config;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;

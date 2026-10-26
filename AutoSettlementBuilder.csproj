@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <AssemblyName>AutoSettlementBuilder</AssemblyName>
+    <RootNamespace>AutoSettlementBuilder</RootNamespace>
+    <BannerlordBinDir>D:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client</BannerlordBinDir>
+    <BannerlordModuleDir>D:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\AutoSettlementBuilder</BannerlordModuleDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="TaleWorlds.CampaignSystem">
+      <HintPath>$(BannerlordBinDir)\TaleWorlds.CampaignSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Core">
+      <HintPath>$(BannerlordBinDir)\TaleWorlds.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Library">
+      <HintPath>$(BannerlordBinDir)\TaleWorlds.Library.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Localization">
+      <HintPath>$(BannerlordBinDir)\TaleWorlds.Localization.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade">
+      <HintPath>$(BannerlordBinDir)\TaleWorlds.MountAndBlade.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.ObjectSystem">
+      <HintPath>$(BannerlordBinDir)\TaleWorlds.ObjectSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(BannerlordBinDir)\Newtonsoft.Json.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <MakeDir Directories="$(BannerlordModuleDir)\bin\Win64_Shipping_Client" />
+    <MakeDir Directories="$(BannerlordModuleDir)\ModuleData" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(BannerlordModuleDir)\bin\Win64_Shipping_Client" />
+    <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(BannerlordModuleDir)\bin\Win64_Shipping_Client" Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
+    <Copy SourceFiles="$(ProjectDir)SubModule.xml" DestinationFolder="$(BannerlordModuleDir)" />
+    <Copy SourceFiles="$(ProjectDir)ModuleData\config.json" DestinationFolder="$(BannerlordModuleDir)\ModuleData" Condition="Exists('$(ProjectDir)ModuleData\config.json')" />
+  </Target>
+
+</Project>

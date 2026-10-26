@@ -1,0 +1,13 @@
+{
+  "Enabled": true,
+  "NotifyOnAutoQueue": true,
+  "ManageDailyProjects": true,
+  "LoyaltyCrisisThreshold": 30.0,
+  "FoodCrisisThreshold": 20.0,
+  "SecurityCrisisThreshold": 40.0,
+  "PrioritizeMasonFirst": true,
+  "AutoBoostConstructionFund": false,
+  "AutoBoostMinPlayerGold": 150000,
+  "AutoBoostFundAmount": 10000,
+  "Language": "tr"
+}
